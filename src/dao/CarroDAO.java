@@ -46,7 +46,7 @@ public class CarroDAO {
         
         try {
             Connection con = Conexao.getConexao();
-            String sql = "select *, p.cpf as cpf from carros c "
+            String sql = "select C.*, p.cpf as cpf from carros c "
                     + "join pessoas p on c.proprietario = p.idPessoa";
             PreparedStatement pst = con.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
@@ -77,7 +77,7 @@ public class CarroDAO {
        try {
             Connection con = Conexao.getConexao();
             String sql = "select *, p.cpf as cpf from carros c "
-                    + "join pessoas p on c.proprietario = p.idPessoa"
+                    + "join pessoas p on c.proprietario = p.idPessoa " 
                     + "where placa = ?";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, placa);
@@ -109,13 +109,13 @@ public class CarroDAO {
         try {
             Connection con = Conexao.getConexao();
             String sql = "update carros set cor = ?, tpCambio = ?, combustivel = ?,"
-                    + "propetario = ? where placa = ?";
+                    + "proprietario = ? where placa = ?";
             PreparedStatement pst =  con.prepareStatement(sql);
             pst.setString(1, cVO.getCor());
             pst.setString(2, cVO.getTpCambio());
             pst.setString(3, cVO.getCombustivel());
             PessoaServicos pessoaS = ServicosFactory.getPessoaServicos();
-            pst.setInt(4, pessoaS.getPessoaByDoc(cVO.getProprietario().getCpf()).getIdPessoa());
+            pst.setInt(4, cVO.getProprietario().getIdPessoa());
             pst.setString(5, cVO.getPlaca());
             pst.executeUpdate();
             
@@ -139,11 +139,4 @@ public class CarroDAO {
         }
     }
 
-    public void deletarCarroDAO(String cpf) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public void atualizarCarroDAO(Carro cVO) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }//fim da classe

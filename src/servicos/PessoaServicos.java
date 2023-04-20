@@ -7,7 +7,6 @@ package servicos;
 import dao.DAOFactory;
 import dao.PessoaDAO;
 import java.util.ArrayList;
-import model.Carro;
 import model.Pessoa;
 
 /**
@@ -17,31 +16,29 @@ import model.Pessoa;
 public class PessoaServicos {
     
     public void cadastroPessoa(Pessoa pVO){
-        PessoaDAO pDAO = DAOFactory.Pessoa();
+        PessoaDAO pDAO = DAOFactory.getPessoaDao();
         pDAO.cadastrarPessoaDAO(pVO);
     }
     
     public ArrayList<Pessoa> getPessoas(){
-        PessoaDAO pDAO = DAOFactory.Pessoa();
+        PessoaDAO pDAO = DAOFactory.getPessoaDao();
         return pDAO.getPessoas();
     }
     
     public Pessoa getPessoaByDoc(String cpf){
-        PessoaDAO pDAO = DAOFactory.Pessoa();
+        PessoaDAO pDAO = DAOFactory.getPessoaDao();
         return pDAO.getPessoaByDoc(cpf);
     }
     
     public void atualizarPessoa(Pessoa pVO){
-        PessoaDAO pDAO = DAOFactory.Pessoa();
+        PessoaDAO pDAO = DAOFactory.getPessoaDao();
         pDAO.atualizarPessoaDAO(pVO);
     }
     
     public void deletarPessoa(String cpf){
-        PessoaDAO pDAO = DAOFactory.Pessoa();
+        PessoaDAO pDAO = DAOFactory.getPessoaDao();
         pDAO.deletarPessoaDAO(cpf);
     }
 
-    public Carro getCarroByDoc(String placa) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
 }

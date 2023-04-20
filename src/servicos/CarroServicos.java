@@ -32,11 +32,11 @@ public class CarroServicos {
     
     public void atualizarCarro(Carro cVO){
         CarroDAO cDAO = DAOFactory.getCarroDAO();
-        cDAO.atualizarCarroDAO(cVO);
+        cDAO.atualizarCarro(cVO);
     }
     
     public void deletarCarro(String placa){
         CarroDAO cDAO = DAOFactory.getCarroDAO();
-        cDAO.deletarCarroDAO(placa);
+        cDAO.deletarCarro(placa);
     }
 }
